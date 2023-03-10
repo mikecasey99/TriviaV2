@@ -4,16 +4,51 @@ import yellow from './images/yellow.svg'
 import blue from './images/blue.svg'
 import Question from './components/Question'
 import shuffleArray from 'shuffle-array'
-
+import './index.css'
 
 function App() {
 
   const [gameState, setGameState] = useState('pre');
   const [questions, setQuestions] = useState([]);
+  const [newGame, setNewGame] = useState('Check Answers');
+  const [apiRequest, setApiRequest] = useState(false);
+
+
+
+  function buttonCall(question, id){
+      if(newGame !== 'Play Again'){
+        checkAnswerBtn();
+        setNewGame('Play Again')
+      }
+      else{
+        setApiRequest(last => !last)
+        setNewGame('Check Answers')
+      }
+  }
+
+  function checkAnswerBtn(){
+    setQuestions((cur) => {
+      return cur.map((item) => {
+        return item.map((x, index) => {
+          if(index === 0){
+            return x;
+          }
+          return {
+            id: x.id,
+            userAnswer : x.userAnswer,
+            actualAnswer : x.actualAnswer,
+            showAnswer : true,
+            answer : x.answer
+          }
+        })
+      })
+    })
+  }
 
 
   function setBtnClick(question, id){
     setQuestions((prev) => {
+      console.log(prev)
       let questionNumber = -1;
       let questionId = -1;
       // Find the Question number
@@ -24,7 +59,7 @@ function App() {
         }
       }
       // Find the answer
-      for(let i = 1; i < 5; i++){
+      for(let i = 1; i < 6; i++){
         if(prev[questionNumber][i].id === id){
           questionId = i;
           break;
@@ -43,6 +78,7 @@ function App() {
               id : individual.id,
               userAnswer : false,
               actualAnswer : individual.actualAnswer,
+              showAnswer : prev[questionNumber][questionId].showAnswer,
               answer : individual.answer
             }
             return tempNonChoice;
@@ -51,6 +87,7 @@ function App() {
             id : prev[questionNumber][questionId].id,
             userAnswer : !(prev[questionNumber][questionId].userAnswer),
             actualAnswer : prev[questionNumber][questionId].actualAnswer,
+            showAnswer : prev[questionNumber][questionId].showAnswer,
             answer : prev[questionNumber][questionId].answer
           }
           return tempAnswer;
@@ -65,6 +102,7 @@ function App() {
       id : crypto.randomUUID(),
       userAnswer : false,
       actualAnswer : false,
+      showAnswer : false,
       answer : answers
     }
   }
@@ -74,6 +112,7 @@ function App() {
       id : crypto.randomUUID(),
       userAnswer : false,
       actualAnswer : true,
+      showAnswer : false,
       answer : answer
     }
   }
@@ -95,8 +134,7 @@ function App() {
     fetch('https://opentdb.com/api.php?amount=4&type=multiple')
       .then((results) => results.json())
       .then((data) => parseData(data))
-  }, [])
-
+  }, [apiRequest])
 
 
   const elements = questions.map((item) => {
@@ -117,7 +155,7 @@ function App() {
       {/* In game */}
       {gameState === 'in' && <div className="in-game">
           {elements}
-          <button id="check">Check Answers</button>
+          <button id="check" onClick={() => buttonCall()}>{newGame}</button>
         </div>}
     </div>
   )

@@ -127,3 +127,16 @@ body{
 #button-off {
   background-color: transparent;
 }
+
+
+#answer-button{
+  background-color: #03a80056;
+}
+
+#wrong-answer-button{
+  background-color: #a6000052;
+}
+
+.user-box {
+  box-shadow: 2px 2px 12px 1px rgb(161, 189, 0);
+}
