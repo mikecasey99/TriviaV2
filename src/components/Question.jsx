@@ -40,7 +40,6 @@ export default function Question(props){
                     ourAnswers.push('')
                 }
             }
-            console.log(`OUR ANSWERS ${ourAnswers}`)
         }
     }
     userAnswer();

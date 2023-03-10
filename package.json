@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "he": "^1.2.0",
     "react": "^18.2.0",
     "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
+    "react-use-window-size": "^1.0.1",
     "shuffle-array": "^1.0.1"
   },
   "devDependencies": {
