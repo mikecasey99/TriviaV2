@@ -1,0 +1,129 @@
+*{
+  box-sizing: border-box;
+  font-family: 'Karla', sans-serif;
+}
+
+html, body, #root, .App{
+  width: 100%;
+  height: 100%;
+}
+
+body{
+  margin: 0;
+  background-color: #F5F7FB;
+}
+
+.blobs{
+  position: fixed;
+  max-width: 550px;
+  opacity: .75;
+  z-index: -1;
+}
+
+#yellow-blob{
+  top: -200px;
+  right: -150px;
+}
+
+#blue-blob{
+  bottom: -200px;
+  left: -100px;
+}
+
+
+/* Intro on load */
+
+.intro {
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro > h2,
+.intro > p{
+  color: #293264;
+  margin: .25em 0;
+}
+
+.intro > h2{
+  font-size: 2.3rem;
+}
+
+.intro > button{
+  background-color: #4D5B9E;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  margin-top: 1em;
+  padding: .75em 2.75em;
+  border-radius: 15px;
+}
+
+.intro > button:hover{
+  background-color: #384275;
+  cursor: pointer;
+}
+
+
+/* Questions component */
+
+.individual-question{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 95%;
+}
+
+.individual-question > *{
+  color: #293264;
+  width: 95%;
+  max-width: 650px;
+}
+
+.answer-buttons{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  padding-bottom: 2em;
+  border-bottom: 1px solid black;
+}
+
+.answer-buttons > button{
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  border: 1px solid black;
+  padding: .2em .8em;
+  border-radius: 5px;
+  color: #293264;
+}
+
+/* Ingame */
+
+.in-game{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#check{
+  cursor: pointer;
+  background-color: #4D5B9E;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  margin: 3em 0;
+  padding: .75em 2.75em;
+  border-radius: 15px;
+}
+
+
+#button-on {
+  background-color: #D6DBF5;
+}
+
+#button-off {
+  background-color: transparent;
+}
