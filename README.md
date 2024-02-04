@@ -1,0 +1,1 @@
+https://scrimbatrivia.netlify.app/
